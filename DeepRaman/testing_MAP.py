@@ -153,11 +153,11 @@ if __name__ == '__main__':
     }     
 
 
-    datafile1 =u'./data/Gunpowder.npy'
+    datafile1 =u'D:/拉曼/DeepRaman-main/data/Gunpowder.npy'
     spectrum_mix = np.load(datafile1) 
 
 
-    datafile2 =u'./data/KS_for_Gunpowder.npy'
+    datafile2 =u'D:/拉曼/DeepRaman-main/data/KS_for_Gunpowder.npy'
     spectrum_pure = np.load(datafile2)
 
 
@@ -203,7 +203,7 @@ if __name__ == '__main__':
             X[int(p*spectrum_pure_sc.shape[0]+q),1,:,0] = spectrum_pure_sc[q,:]
             
 
-    re_model = tf.keras.models.load_model('./model/model.h5', custom_objects=_custom_objects)
+    re_model = tf.keras.models.load_model('D:/拉曼/DeepRaman-main/model/model.h5', custom_objects=_custom_objects)
 
     yy = re_model.predict(X)
 

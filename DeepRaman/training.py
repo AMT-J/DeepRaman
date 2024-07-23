@@ -14,6 +14,7 @@ import tensorflow.keras.backend as K
 import os
 import time
 from tensorflow.keras.layers import Layer
+from tensorflow.keras.optimizers.schedules import ExponentialDecay
 
 #   Define SpatialPyramidPooling
 class SpatialPyramidPooling(Layer):
@@ -116,7 +117,7 @@ def SSPmodel(X):
     conv1 = tf.keras.layers.BatchNormalization()(conv1)
     conv1 = tf.keras.layers.Activation('relu')(conv1) 
     
-    spp = SpatialPyramidPooling([1, 2, 3, 4])(conv1)
+    spp = SpatialPyramidPooling([1, 2, 3, 4])(conv1) #SSP
 
     full1 = tf.keras.layers.Dense(1024, activation='relu')(spp)
     drop1 = tf.keras.layers.Dropout(0.5)(full1)
@@ -194,7 +195,12 @@ def process(Xtrain,Ytrain):
 
     return Xtrain,Ytrain
 
-
+initial_learning_rate = 0.01
+#ExponentialDecay
+lr_schedule = ExponentialDecay(initial_learning_rate=initial_learning_rate,
+                               decay_steps=170,
+                               decay_rate=0.92,
+                               staircase=True)
 
 
 if __name__ == '__main__':
@@ -205,10 +211,10 @@ if __name__ == '__main__':
     }     
 
     # define the data path and save path
-    datapath = './data'
+    datapath = 'D:\VS\DeepRaman\data'
 
     start = time.time()
-    savepath = './model'
+    savepath = 'D:\VS\DeepRaman\model'
     mkdir(savepath)
 
     # load data
@@ -219,18 +225,19 @@ if __name__ == '__main__':
     
     # model training
     model = SSPmodel(Xtrain)
-    model.compile(optimizer=tf.keras.optimizers.SGD(),
+   
+    model.compile(optimizer = tf.keras.optimizers.SGD(learning_rate=lr_schedule),
                  loss='binary_crossentropy',
                   metrics=['accuracy'])
     model.summary()
 
             
-    batch_size = 200
-    epochs = 50
+    batch_size = 100
+    epochs = 300
     history = model.fit_generator(generator = reader(Xtrain,Ytrain,batch_size),
                         epochs = epochs,steps_per_epoch=Xtrain.shape[0]//batch_size,
-                        validation_data = reader(Xvalid,Yvalid,200),
-                        validation_steps = 1)
+                        validation_data = reader(Xvalid,Yvalid,batch_size),
+                        validation_steps = 10)
        
     # learning cures        
     fig = plt.figure(figsize = (6,4.5))
