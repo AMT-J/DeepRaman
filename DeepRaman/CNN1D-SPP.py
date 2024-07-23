@@ -235,10 +235,10 @@ if __name__ == '__main__':
     "SpatialPyramidPooling" :  SpatialPyramidPooling,
     }     
     
-    datapath = './aug'
+    datapath = '../aug'
 
     start = time.time()
-    savepath = './model'
+    savepath = '../model'
     mkdir(savepath)
 
 

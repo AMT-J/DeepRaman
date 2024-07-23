@@ -199,7 +199,7 @@ initial_learning_rate = 0.01
 #ExponentialDecay
 lr_schedule = ExponentialDecay(initial_learning_rate=initial_learning_rate,
                                decay_steps=170,
-                               decay_rate=0.92,
+                               decay_rate=0.95,
                                staircase=True)
 
 
@@ -211,10 +211,10 @@ if __name__ == '__main__':
     }     
 
     # define the data path and save path
-    datapath = 'D:\VS\DeepRaman\data'
+    datapath = '../data'
 
     start = time.time()
-    savepath = 'D:\VS\DeepRaman\model'
+    savepath = '../model'
     mkdir(savepath)
 
     # load data

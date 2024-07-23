@@ -245,10 +245,10 @@ if __name__ == '__main__':
     "SpatialPyramidPooling" :  SpatialPyramidPooling,
     }     
     
-    datapath = './aug'
+    datapath = '../aug'
 
 
-    savepath = './model'
+    savepath = '../model'
     mkdir(savepath)
 
 

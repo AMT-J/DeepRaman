@@ -130,7 +130,7 @@ if __name__ == '__main__':
     }   
     
     
-    datafile0 = u'./data/Multi_component_mixture_Dataset.npy'
+    datafile0 = u'../data/Multi_component_mixture_Dataset.npy'
     spectrum = np.load(datafile0) 
 
     spectrum_pure = spectrum[0:13,:] 
@@ -157,7 +157,7 @@ if __name__ == '__main__':
             X[int(p*spectrum_pure_sc.shape[0]+q),1,:,0] = spectrum_pure_sc[q,:]
             
 
-    re_model = tf.keras.models.load_model('./model/model.h5', custom_objects=_custom_objects)
+    re_model = tf.keras.models.load_model('../model/model.h5', custom_objects=_custom_objects)
     y = re_model.predict(X)
     
     spectrum_pure = WhittakerSmooth_MAT(spectrum_pure, lamb=1)

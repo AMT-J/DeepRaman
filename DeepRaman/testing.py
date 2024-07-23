@@ -130,15 +130,15 @@ if __name__ == '__main__':
     
     # Import Data 
     # Database
-    datafile0 = u'D:/VS/DeepRaman/data/database_for_Liquid_and_powder_mixture.npy'
+    datafile0 = u'../data/database_for_Liquid_and_powder_mixture.npy'
     spectrum_pure = np.load(datafile0) 
     
     # Unknow
-    datafile1 = u'D:/VS/DeepRaman/data/unknown_Liquid_and_powder_mixture.npy'
+    datafile1 = u'../data/unknown_Liquid_and_powder_mixture.npy'
     spectrum_mix = np.load(datafile1)     
     
     # Component information of database
-    csv_reader = csv.reader(open(u'D:/VS/DeepRaman/data/database_for_Liquid_and_powder_mixture.csv', encoding='utf-8'))
+    csv_reader = csv.reader(open(u'../data/database_for_Liquid_and_powder_mixture.csv', encoding='utf-8'))
     DBcoms = [row for row in csv_reader]    
     
     
@@ -161,7 +161,7 @@ if __name__ == '__main__':
             
     
     # Reload and predict
-    re_model = tf.keras.models.load_model('D:/VS/DeepRaman/model/model.h5', custom_objects=_custom_objects)
+    re_model = tf.keras.models.load_model('../model/model.h5', custom_objects=_custom_objects)
     y = re_model.predict(X)
 
     
