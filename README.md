@@ -15,12 +15,6 @@ conda activate DPRM
 pip install -r requirements.txt
 conda install -c conda-forge cudatoolkit=11.2
 conda install -c conda-forge cudnn=8.1.0
-
-$envVarsPath = Join-Path $env:CONDA_PREFIX 'etc\conda\activate.d\env_vars.bat'
-"set PATH=%CONDA_PREFIX%\Library\bin;%PATH%" | Out-File -FilePath $envVarsPath -Encoding ASCII
-"set PATH=%CONDA_PREFIX%\Library\lib;%PATH%" | Out-File -FilePath $envVarsPath -Append -Encoding ASCII
-
-
 ```
 
 # Usage
