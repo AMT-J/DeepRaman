@@ -234,10 +234,15 @@ if __name__ == '__main__':
             
     batch_size = 100
     epochs = 300
-    history = model.fit_generator(generator = reader(Xtrain,Ytrain,batch_size),
-                        epochs = epochs,steps_per_epoch=Xtrain.shape[0]//batch_size,
-                        validation_data = reader(Xvalid,Yvalid,batch_size),
-                        validation_steps = 10)
+    history = model.fit(
+                        reader(Xtrain, Ytrain, batch_size),
+                        steps_per_epoch=Xtrain.shape[0] // batch_size,
+                        epochs=epochs,
+                        validation_data=reader(Xvalid, Yvalid, batch_size),
+                        validation_steps=10
+    )
+            
+
        
     # learning cures        
     fig = plt.figure(figsize = (6,4.5))
@@ -260,4 +265,3 @@ if __name__ == '__main__':
     del model
     end = time.time()
     print('Training finished, time:%.2fSeconds'%(end-start))
-
