@@ -10,7 +10,7 @@ Raman spectra contain abundant information from molecules but are difficult to a
 # Depends
 
 ```
-conda create -n DPRM python==3.8.0
+conda create -n DPRM python=3.8
 conda activate DPRM
 pip install -r requirements.txt
 conda install -c conda-forge cudatoolkit=11.2
